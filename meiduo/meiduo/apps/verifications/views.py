@@ -42,6 +42,7 @@ class SMSCodeView(APIView):
         # print(code)
         # 调用celery任务，执行耗时代码
         send_sms_code.delay(mobile,code,constans.SMS_CODE_EXPIRES/60,1)
+        print(code)
         #3.响应
         return Response({'message':'OK'})
 

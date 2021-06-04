@@ -6,13 +6,13 @@ from django.shortcuts import render
 from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from django_redis import get_redis_connection
 from celery_tasks.sms.tasks import send_sms_code
 from utils.ytx_sdk.sendSMS import CCP
 from . import constans
 
 # 链接redis
-from django_redis import get_redis_connection
+
 
 class SMSCodeView(APIView):
     # 发送短信验证码

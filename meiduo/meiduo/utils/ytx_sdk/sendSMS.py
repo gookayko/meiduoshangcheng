@@ -3,15 +3,15 @@ from .CCPRestSDK import REST
 
 class CCP:
     @classmethod
-    def sendTemplateSMS(self, mobile, code,expires, template_id):
+    def sendTemplateSMS(cls, mobile, code,expires, template_id):
         # 主帐号
-        accountSid = '8a216da85f5c89b1015f994144201b06'
+        accountSid = '8aaf070866235bc501662845f1100536'
 
         # 主帐号Token
-        accountToken = '6ce3f903e23c418e8ef7e7d03704f591'
+        accountToken = '9c7188bd7d6045309fc85c647b7969ca'
 
         # 应用Id
-        appId = '8a216da85f5c89b1015f994145a21b0d'
+        appId = '8aaf070866235bc501662845f16e053d'
 
         # 请求地址，格式如下，不需要写http://
         serverIP = 'app.cloopen.com'

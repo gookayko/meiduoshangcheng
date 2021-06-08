@@ -1,7 +1,7 @@
 from rest_framework import serializers
 import re
 from django_redis import get_redis_connection
-
+from rest_framework_jwt.settings import api_settings
 
 
 # # ModelSerializer=》有模型类优先使用该类型
@@ -132,6 +132,9 @@ class CreateUserSerializer(serializers.Serializer):
     sms_code = serializers.IntegerField(write_only=True)
     mobile = serializers.IntegerField()
     allow = serializers.BooleanField(write_only=True)
+    token=serializers.CharField(read_only=True)
+
+
 
 
     # II验证
@@ -205,5 +208,20 @@ class CreateUserSerializer(serializers.Serializer):
         # )
         # user.password=
 
-        return
+
+
+        # 需要生成token
+        jwt_payload_handler=api_settings.JWT_PAYLOAD_HANDLER
+        jwt_encode_handler=api_settings.JWT_ENCODE_HANDLER
+        payload=jwt_payload_handler(user)
+        # 通过token可以获得header.payload.signature
+        token=jwt_encode_handler(payload)
+
+
+        # 将token输出到客户端
+        # 为user对象添加属性
+        user.token=token
+
+
+        return user
 

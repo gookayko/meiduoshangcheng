@@ -204,6 +204,14 @@ LOGGING = {
 REST_FRAMEWORK = {
     # 异常处理
     'EXCEPTION_HANDLER': 'utils.exceptions.exception_handler',
+    # 身份认证方式: jwt  session  basic
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 前后端分离使用jwt验证
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        #访问admin后台时使用
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
 # CORS白名单
@@ -214,3 +222,12 @@ CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 # 替换用户模型，格式为“应用名称.类型名称”
 AUTH_USER_MODEL = 'users.User'
+
+
+import datetime
+#配置jwt
+JWT_AUTH = {
+    # JWT过期时长  timedelta时间间隔
+    # 'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
+}

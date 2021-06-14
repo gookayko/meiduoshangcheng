@@ -12,8 +12,16 @@ from rest_framework import serializers
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 
+
 from rest_framework.views import APIView
 from .serializers import CreateUserSerializer
+
+
+from django.contrib.auth import authenticate
+from django.contrib.auth.backends import ModelBackend
+
+
+
 
 
 # list==>[user,user,user...] 一个列表，里面是一个个字典返回查到的对象，不是个数
@@ -56,3 +64,5 @@ class UserCreateView(CreateAPIView):
     # 注册用户==》创建用户
     # queryset = 》当前进行创建操作 不需要查询
     serializer_class = CreateUserSerializer
+
+

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'corsheaders',
     'verifications.apps.VerificationsConfig',
+    'oauth.apps.OauthConfig',
 ]
 
 MIDDLEWARE = [
@@ -230,4 +231,22 @@ JWT_AUTH = {
     # JWT过期时长  timedelta时间间隔
     # 'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
+    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response_payload_handler',
 }
+
+
+#
+# AUTHENTICATION_BACKENDS = [
+#     'users.utils.UsernameMobileAuthBackend',
+# ]
+
+
+
+# QQ登录参数
+# appid
+QQ_CLIENT_ID = '101474184'
+# appkey
+QQ_CLIENT_SECRET = 'c6ce949e04e12ecc909ae6a8b09b637c'
+# 回调地址
+QQ_REDIRECT_URI = 'http://www.meiduo.site:8080/oauth_callback.html'
+QQ_STATE = '/'
